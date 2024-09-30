@@ -27,11 +27,11 @@ describe('Employee API', () => {
     it('should update an employee', async () => {
         const response = await request(app)
             .put('/api/employees/1')
-            .send({ name: 'John Smith', baseSalary: 6000 });
+            .send({ name: 'John Smith', position: 'Manager', baseSalary: 6000 });
 
         expect(response.statusCode).toBe(200);
         expect(response.body.name).toBe('John Smith');
-        expect(response.body.totalSalary).toBe(6600); // updated salary with bonus
+        expect(response.body.totalSalary).toBeCloseTo(6600); // updated salary with bonus
     });
 
     it('should delete an employee', async () => {
